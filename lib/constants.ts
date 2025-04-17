@@ -1,5 +1,5 @@
 export const SITE_NAME = "Trowbridge Gallery";
-export const SITE_DESCRIPTION = "A premier destination for fine art prints and original artwork";
+export const SITE_DESCRIPTION = "Trowbridge Gallery | Established 1981 | London's premier destination for fine art, contemporary prints, original paintings, photography, textiles, and sculptures. Discover exceptional artworks from renowned and emerging artists.";
 
 export const CATEGORIES = [
   "Paintings",

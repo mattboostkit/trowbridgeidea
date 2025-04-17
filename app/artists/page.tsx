@@ -4,8 +4,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Artists",
-  description: "Discover our roster of acclaimed and emerging artists",
+  title: "Our Artists | Acclaimed & Emerging Talent | Trowbridge Gallery",
+  description: "Discover Trowbridge Gallery's diverse roster of acclaimed and emerging artists. From abstract expressionism and urban photography to mixed media, sculpture, and digital art. Explore artist profiles, specialties, and available works.",
+  keywords: "fine art artists, contemporary artists, abstract expressionism, urban photography, mixed media artists, emerging artists, London gallery artists, art collection, Trowbridge Gallery artists",
 }
 
 export default function ArtistsPage() {
@@ -19,7 +20,7 @@ export default function ArtistsPage() {
       featured: true,
     },
     {
-      id: "2", 
+      id: "2",
       name: "David Kim",
       specialty: "Urban Photography",
       bio: "David Kim's photography captures the essence of urban landscapes, finding beauty in the overlooked details of city life. His work has been featured in several international publications.",

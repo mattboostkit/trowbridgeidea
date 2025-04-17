@@ -15,6 +15,28 @@ export const metadata: Metadata = {
     default: SITE_NAME,
   },
   description: SITE_DESCRIPTION,
+  metadataBase: new URL('https://trowbridgegallery.co.uk'),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  authors: [{ name: 'Trowbridge Gallery', url: 'https://trowbridgegallery.co.uk' }],
+  generator: 'Next.js',
+  applicationName: 'Trowbridge Gallery',
+  referrer: 'origin-when-cross-origin',
+  creator: 'Trowbridge Gallery',
+  publisher: 'Trowbridge Gallery',
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
 };
 
 export default function RootLayout({

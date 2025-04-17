@@ -6,13 +6,14 @@ import { Button } from "@/components/ui/button"
 import { formatDate } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  title: "Exhibitions",
-  description: "Current and upcoming exhibitions at Trowbridge Gallery",
+  title: "Art Exhibitions | Current & Upcoming Shows | Trowbridge Gallery London",
+  description: "Explore current and upcoming art exhibitions at Trowbridge Gallery London. From contemporary photography and textile art to urban abstractions and emerging artist showcases. Visit our Kings Road gallery or experience our virtual exhibition tours online.",
+  keywords: "art exhibitions London, contemporary art shows, gallery exhibitions, textile art exhibition, photography exhibition, virtual art tours, emerging artists showcase, London art events, Kings Road gallery",
 }
 
 export default function ExhibitionsPage() {
   const currentDate = new Date()
-  
+
   const exhibitions = [
     {
       id: "1",
@@ -48,6 +49,17 @@ export default function ExhibitionsPage() {
       virtualTourUrl: "/exhibitions/virtual-tour/3",
     },
     {
+      id: "5",
+      title: "Textile Narratives: Woven Stories",
+      description: "An immersive exhibition showcasing innovative textile art that explores cultural heritage, personal narratives, and contemporary social themes through fiber and fabric.",
+      startDate: new Date(currentDate.getFullYear(), currentDate.getMonth(), 15),
+      endDate: new Date(currentDate.getFullYear(), currentDate.getMonth() + 2, 15),
+      location: "North Gallery",
+      coverImage: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      virtualTourUrl: "/exhibitions/virtual-tour/5",
+    },
+    {
       id: "4",
       title: "Emerging Voices: New Talent Showcase",
       description: "Discover the work of rising artists pushing boundaries and bringing fresh perspectives to contemporary art.",
@@ -61,26 +73,26 @@ export default function ExhibitionsPage() {
   ]
 
   const currentExhibitions = exhibitions.filter(
-    (exhibition) => 
-      currentDate >= exhibition.startDate && 
+    (exhibition) =>
+      currentDate >= exhibition.startDate &&
       currentDate <= exhibition.endDate
   )
-  
+
   const upcomingExhibitions = exhibitions.filter(
     (exhibition) => currentDate < exhibition.startDate
   )
-  
+
   const pastExhibitions = exhibitions.filter(
     (exhibition) => currentDate > exhibition.endDate
   )
 
   function formatDateRange(startDate: Date, endDate: Date) {
-    const options: Intl.DateTimeFormatOptions = { 
-      day: 'numeric', 
-      month: 'long', 
-      year: 'numeric' 
+    const options: Intl.DateTimeFormatOptions = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
     }
-    
+
     return `${startDate.toLocaleDateString('en-GB', options)} - ${endDate.toLocaleDateString('en-GB', options)}`
   }
 
@@ -168,7 +180,7 @@ export default function ExhibitionsPage() {
                       <MapPin className="h-4 w-4 mr-2" />
                       <span className="text-sm">{exhibition.location}</span>
                     </div>
-                    <Link 
+                    <Link
                       href={`/exhibitions/${exhibition.id}`}
                       className="inline-flex items-center text-primary text-sm font-medium hover:underline"
                     >

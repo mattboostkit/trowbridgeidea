@@ -4,8 +4,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Gallery",
-  description: "Explore our curated collection of exceptional contemporary artworks",
+  title: "Art Gallery | Virtual & In-Person Exhibition Space | Trowbridge Gallery",
+  description: "Explore Trowbridge Gallery's curated collection of exceptional contemporary artworks. View our featured pieces, browse by artist, and experience our virtual gallery tours. Visit our London exhibition space on Kings Road.",
+  keywords: "art gallery London, contemporary art exhibition, virtual art gallery, fine art collection, gallery space Kings Road, featured artworks, art exhibition space, Trowbridge Gallery collection, gallery viewing",
 }
 
 export default function GalleryPage() {
@@ -97,7 +98,7 @@ export default function GalleryPage() {
           </div>
         </div>
       </div>
-      
+
       <div className="container py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
@@ -118,7 +119,7 @@ export default function GalleryPage() {
                 </select>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {galleryImages.map((artwork) => (
                 <div key={artwork.id} className="group cursor-pointer">
@@ -139,14 +140,14 @@ export default function GalleryPage() {
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-12 flex justify-center">
               <Button asChild>
                 <Link href="/shop">View All Artwork</Link>
               </Button>
             </div>
           </div>
-          
+
           <div className="border-t pt-16">
             <div className="text-center mb-12">
               <h2 className="text-2xl font-bold mb-3">Virtual Gallery Tour</h2>
@@ -154,7 +155,7 @@ export default function GalleryPage() {
                 Experience our current exhibition from anywhere in the world with our immersive virtual tour
               </p>
             </div>
-            
+
             <div className="aspect-video overflow-hidden rounded-lg relative bg-muted flex items-center justify-center mb-8">
               <div className="text-center p-8">
                 <h3 className="text-xl font-medium mb-2">Virtual Tour Coming Soon</h3>
@@ -164,7 +165,7 @@ export default function GalleryPage() {
                 <Button variant="outline">Get Notified</Button>
               </div>
             </div>
-            
+
             <div className="text-center">
               <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
                 Would you like to visit our gallery in person? We welcome visitors during our opening hours.

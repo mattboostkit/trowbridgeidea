@@ -35,6 +35,38 @@ const featuredProducts = [
     price: 275,
     image: "https://media.istockphoto.com/id/2165594608/photo/red-pink-planet-on-the-horizon-of-a-mountainous-rocky-area-at-night-sci-fi-landscape-sci-fi.webp?a=1&b=1&s=612x612&w=0&k=20&c=croVHNAXJtQVXUD0fYuodm1xBWoOwK9eYQzRdgBr3UY=",
     slug: "mountain-serenity"
+  },
+  {
+    id: "5",
+    title: "Coastal Dreams",
+    artist: "Sophia Martinez",
+    price: 395,
+    image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "coastal-dreams"
+  },
+  {
+    id: "6",
+    title: "Geometric Patterns",
+    artist: "Michael Chen",
+    price: 310,
+    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "geometric-patterns"
+  },
+  {
+    id: "7",
+    title: "Botanical Study",
+    artist: "Emma Thompson",
+    price: 255,
+    image: "https://images.unsplash.com/photo-1602615576820-ea14cf3e476a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "botanical-study"
+  },
+  {
+    id: "8",
+    title: "Urban Nightscape",
+    artist: "Robert Lee",
+    price: 480,
+    image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "urban-nightscape"
   }
 ]
 
@@ -48,11 +80,11 @@ export function FeaturedProducts() {
             Discover our selection of exceptional pieces chosen for their unique beauty and artistic merit
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
           {featuredProducts.map((product) => (
-            <Link 
-              key={product.id} 
+            <Link
+              key={product.id}
               href={`/shop/${product.slug}`}
               className="group"
             >
@@ -74,10 +106,10 @@ export function FeaturedProducts() {
             </Link>
           ))}
         </div>
-        
+
         <div className="mt-12 text-center">
-          <Link 
-            href="/shop" 
+          <Link
+            href="/shop"
             className="inline-flex items-center text-primary font-medium hover:underline"
           >
             View all artwork

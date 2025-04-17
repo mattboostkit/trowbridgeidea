@@ -3,8 +3,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Shipping & Returns",
-  description: "Shipping information, delivery times, and return policy for Trowbridge Gallery",
+  title: "Shipping & Returns Policy | Artwork Delivery Information | Trowbridge Gallery",
+  description: "Trowbridge Gallery's shipping and returns policy. Find delivery times, international shipping information, packaging details, and our 30-day return policy for fine art purchases. Free UK shipping on orders over £250.",
+  keywords: "art shipping policy, artwork returns, fine art delivery, international art shipping, museum-quality packaging, art return policy, free art shipping UK, Trowbridge Gallery shipping, artwork delivery times",
 }
 
 export default function ShippingReturnsPage() {
@@ -12,16 +13,16 @@ export default function ShippingReturnsPage() {
     <div className="container py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold tracking-tight mb-6">Shipping & Returns</h1>
-        
+
         <div className="space-y-10">
           <section>
             <h2 className="text-2xl font-semibold mb-4">Shipping Information</h2>
             <div className="space-y-4">
               <p className="text-muted-foreground">
-                At Trowbridge Gallery, we take great care in packaging and shipping your artwork to ensure it arrives safely and in perfect condition. 
+                At Trowbridge Gallery, we take great care in packaging and shipping your artwork to ensure it arrives safely and in perfect condition.
                 We ship worldwide and use specialist art couriers for larger pieces.
               </p>
-              
+
               <h3 className="text-lg font-medium mt-6 mb-3">Delivery Times</h3>
               <div className="border rounded-lg overflow-hidden">
                 <table className="w-full">
@@ -56,17 +57,17 @@ export default function ShippingReturnsPage() {
                   </tbody>
                 </table>
               </div>
-              
+
               <p className="text-sm text-muted-foreground mt-2">
                 Please note: These are estimated delivery times and may vary depending on customs clearance for international shipments.
               </p>
-              
+
               <h3 className="text-lg font-medium mt-6 mb-3">Shipping Costs</h3>
               <p className="text-muted-foreground">
-                Shipping costs are calculated based on the destination, size, and weight of the artwork. The exact shipping cost will be displayed 
+                Shipping costs are calculated based on the destination, size, and weight of the artwork. The exact shipping cost will be displayed
                 at checkout before you complete your purchase.
               </p>
-              
+
               <ul className="list-disc pl-5 space-y-2 text-muted-foreground mt-4">
                 <li>Free shipping on all orders within the UK over £250</li>
                 <li>Free shipping on international orders over £500</li>
@@ -75,7 +76,7 @@ export default function ShippingReturnsPage() {
               </ul>
             </div>
           </section>
-          
+
           <section>
             <h2 className="text-2xl font-semibold mb-4">Packaging</h2>
             <p className="text-muted-foreground mb-4">
@@ -89,27 +90,27 @@ export default function ShippingReturnsPage() {
               <li>Weather-resistant outer packaging</li>
             </ul>
           </section>
-          
+
           <section>
             <h2 className="text-2xl font-semibold mb-4">Track Your Order</h2>
             <p className="text-muted-foreground mb-4">
-              Once your order has been shipped, you will receive a confirmation email with tracking information. You can use this to monitor the 
+              Once your order has been shipped, you will receive a confirmation email with tracking information. You can use this to monitor the
               progress of your delivery.
             </p>
             <p className="text-muted-foreground">
-              If you have any questions about your shipment, please don't hesitate to contact our customer service team at 
-              <a href="mailto:info@trowbridgegallery.co.uk" className="text-primary ml-1">info@trowbridgegallery.co.uk</a> or call us at 
+              If you have any questions about your shipment, please don't hesitate to contact our customer service team at
+              <a href="mailto:info@trowbridgegallery.co.uk" className="text-primary ml-1">info@trowbridgegallery.co.uk</a> or call us at
               <a href="tel:02073718733" className="text-primary ml-1">020 7371 8733</a>.
             </p>
           </section>
-          
+
           <section>
             <h2 className="text-2xl font-semibold mb-4">Returns Policy</h2>
             <p className="text-muted-foreground mb-4">
-              We want you to be completely satisfied with your purchase. If for any reason you are not entirely happy with your artwork, 
+              We want you to be completely satisfied with your purchase. If for any reason you are not entirely happy with your artwork,
               we offer a straightforward returns policy:
             </p>
-            
+
             <div className="space-y-4">
               <div className="bg-muted p-4 rounded-lg">
                 <h3 className="font-medium mb-2">30-Day Return Period</h3>
@@ -117,7 +118,7 @@ export default function ShippingReturnsPage() {
                   You may return your artwork within 30 days of receipt for a full refund or exchange.
                 </p>
               </div>
-              
+
               <h3 className="text-lg font-medium mt-4 mb-2">Return Conditions:</h3>
               <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                 <li>Artwork must be in its original condition and packaging</li>
@@ -125,27 +126,27 @@ export default function ShippingReturnsPage() {
                 <li>Custom framed or commissioned works cannot be returned unless damaged</li>
                 <li>Please contact us before returning any item to receive return instructions</li>
               </ul>
-              
+
               <h3 className="text-lg font-medium mt-6 mb-2">Damaged Items:</h3>
               <p className="text-muted-foreground">
-                If your artwork arrives damaged, please contact us immediately at 
-                <a href="mailto:info@trowbridgegallery.co.uk" className="text-primary ml-1">info@trowbridgegallery.co.uk</a> with photos of the damage. 
+                If your artwork arrives damaged, please contact us immediately at
+                <a href="mailto:info@trowbridgegallery.co.uk" className="text-primary ml-1">info@trowbridgegallery.co.uk</a> with photos of the damage.
                 We will arrange for a replacement or refund and cover all shipping costs.
               </p>
             </div>
           </section>
-          
+
           <section>
             <h2 className="text-2xl font-semibold mb-4">Customs & Import Duties</h2>
             <p className="text-muted-foreground mb-4">
-              For international shipments, customers may be subject to import taxes, customs duties, and fees levied by the destination country. 
+              For international shipments, customers may be subject to import taxes, customs duties, and fees levied by the destination country.
               These charges are the responsibility of the recipient and are not included in our shipping costs.
             </p>
             <p className="text-muted-foreground">
               Please check with your country's customs office to determine what these additional costs might be before placing your order.
             </p>
           </section>
-          
+
           <div className="border-t pt-8 mt-8">
             <p className="text-muted-foreground mb-6">
               If you have any questions about our shipping and returns policy, please don't hesitate to contact our customer service team.

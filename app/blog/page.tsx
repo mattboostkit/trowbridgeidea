@@ -1,8 +1,9 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Explore articles, interviews, and insights from the art world",
+  title: "Trowbridge Journal | Art Blog | Expert Insights & Artist Interviews",
+  description: "Explore the Trowbridge Gallery Journal for expert insights, artist interviews, collecting guides, and the latest trends in contemporary art. Discover articles on interior design, textile art, and collecting tips from London's premier fine art gallery.",
+  keywords: "art blog, contemporary art insights, artist interviews, art collecting guide, interior design with art, textile art trends, fine art journal, Trowbridge Gallery blog, art world news",
 }
 
 export default function BlogPage() {
@@ -31,6 +32,30 @@ export default function BlogPage() {
       coverImage: "https://static.trowbridgegallery.com/lib/static/VirtualGallery/homepage_squares/whatsnew.jpg",
       author: "Maria Chen",
       publishedAt: "February 14, 2025",
+    },
+    {
+      id: "4",
+      title: "The Evolution of Textile Art in Contemporary Spaces",
+      excerpt: "How textile art has transformed from traditional craft to cutting-edge contemporary expression.",
+      coverImage: "https://images.unsplash.com/photo-1579762593175-20226054cad0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      author: "Rebecca Taylor",
+      publishedAt: "May 2, 2025",
+    },
+    {
+      id: "5",
+      title: "Collecting Art: A Guide for First-Time Buyers",
+      excerpt: "Essential advice for navigating the art market and building a collection you'll treasure.",
+      coverImage: "https://images.unsplash.com/photo-1577720643272-265f09367456?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      author: "Thomas Wright",
+      publishedAt: "April 30, 2025",
+    },
+    {
+      id: "6",
+      title: "Artist Spotlight: In Conversation with Emma Thompson",
+      excerpt: "An exclusive interview with the botanical artist whose detailed studies have captivated collectors worldwide.",
+      coverImage: "https://images.unsplash.com/photo-1602615576820-ea14cf3e476a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      author: "Daniel Foster",
+      publishedAt: "April 22, 2025",
     },
   ]
 
@@ -64,8 +89,8 @@ export default function BlogPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground italic">
-            More articles coming soon. Check back for updates or subscribe to our newsletter.
+          <p className="text-muted-foreground">
+            Explore more articles in our archive or subscribe to our newsletter for the latest updates.
           </p>
         </div>
       </div>
