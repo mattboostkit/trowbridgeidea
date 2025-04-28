@@ -4,14 +4,14 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { 
-  ShoppingCart, 
-  User, 
-  Search, 
-  Menu, 
-  X, 
-  Heart, 
-  Paintbrush 
+import {
+  ShoppingCart,
+  User,
+  Search,
+  Menu,
+  X,
+  Heart,
+  Paintbrush
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -21,10 +21,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { NAVIGATION } from "@/lib/constants"
+import { SearchDialog } from "@/components/layout/search-dialog"
 
 export function Header() {
   const pathname = usePathname()
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   return (
     <header className="border-b bg-background sticky top-0 z-40">
@@ -66,7 +66,7 @@ export function Header() {
             </nav>
           </SheetContent>
         </Sheet>
-        
+
         <Link href="/" className="flex items-center">
           <Image
             src="https://ik.imagekit.io/boostkit/Trowbridge/Logo.png?updatedAt=1744830655788"
@@ -74,10 +74,11 @@ export function Header() {
             width={160}
             height={40}
             className="h-8 w-auto"
-            unoptimized
+            priority
+            quality={100}
           />
         </Link>
-        
+
         <nav className="hidden md:flex items-center gap-6">
           {NAVIGATION.main.map((item) => (
             <Link
@@ -91,54 +92,24 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        
+
         <div className="flex items-center gap-2">
-          {isSearchOpen ? (
-            <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-              <div className="bg-background border rounded-lg shadow-lg w-full max-w-lg p-4">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-lg font-medium">Search Gallery</h2>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    onClick={() => setIsSearchOpen(false)}
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
-                </div>
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    placeholder="Search for art, artists, collections..." 
-                    className="w-full border rounded-md h-10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                  <Button size="icon" className="absolute right-1 top-1">
-                    <Search className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Button>
-          )}
-          
+          <SearchDialog />
+
           <Button variant="ghost" size="icon" asChild>
             <Link href="/wishlist">
               <Heart className="h-5 w-5" />
               <span className="sr-only">Wishlist</span>
             </Link>
           </Button>
-          
+
           <Button variant="ghost" size="icon" asChild>
             <Link href="/account">
               <User className="h-5 w-5" />
               <span className="sr-only">Account</span>
             </Link>
           </Button>
-          
+
           <Button variant="ghost" size="icon" asChild>
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />

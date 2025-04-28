@@ -40,7 +40,7 @@ export function ProductFilters() {
   const createQueryString = useCallback(
     (params: Record<string, string | string[] | null>) => {
       const newSearchParams = new URLSearchParams(searchParams.toString())
-      
+
       Object.entries(params).forEach(([name, value]) => {
         if (value === null) {
           newSearchParams.delete(name)
@@ -54,7 +54,7 @@ export function ProductFilters() {
           newSearchParams.set(name, value)
         }
       })
-      
+
       return newSearchParams.toString()
     },
     [searchParams]
@@ -65,7 +65,7 @@ export function ProductFilters() {
     const newCategories = selectedCategories.includes(category)
       ? selectedCategories.filter(c => c !== category)
       : [...selectedCategories, category]
-    
+
     router.push(
       `${pathname}?${createQueryString({ category: newCategories.length ? newCategories : null })}`
     )
@@ -76,7 +76,7 @@ export function ProductFilters() {
     const newArtists = selectedArtists.includes(artist)
       ? selectedArtists.filter(a => a !== artist)
       : [...selectedArtists, artist]
-    
+
     router.push(
       `${pathname}?${createQueryString({ artist: newArtists.length ? newArtists : null })}`
     )
@@ -89,9 +89,9 @@ export function ProductFilters() {
 
   const applyPriceFilter = () => {
     router.push(
-      `${pathname}?${createQueryString({ 
-        minPrice: priceRange[0].toString(), 
-        maxPrice: priceRange[1].toString() 
+      `${pathname}?${createQueryString({
+        minPrice: priceRange[0].toString(),
+        maxPrice: priceRange[1].toString()
       })}`
     )
   }
@@ -103,8 +103,8 @@ export function ProductFilters() {
   }
 
   const filterCount = (
-    (selectedCategories.length > 0 ? 1 : 0) + 
-    (selectedArtists.length > 0 ? 1 : 0) + 
+    (selectedCategories.length > 0 ? 1 : 0) +
+    (selectedArtists.length > 0 ? 1 : 0) +
     ((minPrice !== "0" || maxPrice !== "1000") ? 1 : 0)
   )
 
@@ -116,20 +116,20 @@ export function ProductFilters() {
           Clear all
         </Button>
       </div>
-      
+
       <Separator />
-      
+
       <div>
         <h4 className="font-medium mb-3">Categories</h4>
         <div className="space-y-2">
           {CATEGORIES.map((category) => (
             <div key={category} className="flex items-center space-x-2">
-              <Checkbox 
-                id={`category-${category}`} 
+              <Checkbox
+                id={`category-${category}`}
                 checked={selectedCategories.includes(category)}
                 onCheckedChange={() => toggleCategory(category)}
               />
-              <label 
+              <label
                 htmlFor={`category-${category}`}
                 className="text-sm text-muted-foreground cursor-pointer"
               >
@@ -139,20 +139,20 @@ export function ProductFilters() {
           ))}
         </div>
       </div>
-      
+
       <Separator />
-      
+
       <div>
         <h4 className="font-medium mb-3">Artists</h4>
         <div className="space-y-2">
           {artists.map((artist) => (
             <div key={artist.id} className="flex items-center space-x-2">
-              <Checkbox 
-                id={`artist-${artist.id}`} 
+              <Checkbox
+                id={`artist-${artist.id}`}
                 checked={selectedArtists.includes(artist.name)}
                 onCheckedChange={() => toggleArtist(artist.name)}
               />
-              <label 
+              <label
                 htmlFor={`artist-${artist.id}`}
                 className="text-sm text-muted-foreground cursor-pointer"
               >
@@ -162,9 +162,9 @@ export function ProductFilters() {
           ))}
         </div>
       </div>
-      
+
       <Separator />
-      
+
       <div>
         <div className="flex justify-between items-center mb-3">
           <h4 className="font-medium">Price Range</h4>
@@ -172,9 +172,9 @@ export function ProductFilters() {
             {formatPrice(priceRange[0])} - {formatPrice(priceRange[1])}
           </span>
         </div>
-        <Slider 
+        <Slider
           defaultValue={[parseInt(minPrice), parseInt(maxPrice)]}
-          max={1000} 
+          max={1000}
           step={50}
           value={priceRange}
           onValueChange={handlePriceChange}
@@ -195,7 +195,7 @@ export function ProductFilters() {
           <p className="text-sm text-muted-foreground hidden md:block">
             Showing 1-20 of 567 results
           </p>
-          
+
           <Sheet open={openFilters} onOpenChange={setOpenFilters}>
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="md:hidden">
@@ -212,11 +212,11 @@ export function ProductFilters() {
               <FilterContent />
             </SheetContent>
           </Sheet>
-          
+
           {filterCount > 0 && (
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={clearFilters}
               className="hidden md:flex"
             >
@@ -226,17 +226,15 @@ export function ProductFilters() {
           )}
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
         <div className="hidden md:block">
           <FilterContent />
         </div>
-        
+
         <div className="md:col-span-4">
           {/* Product grid will be here */}
-          <div className="text-center py-12 text-muted-foreground">
-            Product grid will be displayed here
-          </div>
+          {/* Product grid is now imported in the shop page */}
         </div>
       </div>
     </div>
