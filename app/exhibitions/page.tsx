@@ -150,8 +150,7 @@ export default function ExhibitionsPage() {
   };
 
   return (
-    <div className="container py-12 px-4">
-      {/* Add structured data for exhibitions */}
+    <main className="container py-12 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -288,6 +287,6 @@ export default function ExhibitionsPage() {
           </section>
         )}
       </div>
-    </div>
+    </main>
   )
 }

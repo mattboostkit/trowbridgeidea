@@ -73,8 +73,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   };
 
   return (
-    <div className="container py-10 px-4">
-      {/* Add structured data for product */}
+    <main className="container py-10 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -226,7 +225,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
