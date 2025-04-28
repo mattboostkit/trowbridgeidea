@@ -43,7 +43,7 @@ export default function ShopPage() {
   };
 
   return (
-    <main className="container py-10 px-4">
+    <div className="container py-10 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -54,6 +54,6 @@ export default function ShopPage() {
       <Suspense fallback={<ProductLoadingSkeleton />}>
         <ProductGrid />
       </Suspense>
-    </main>
+    </div>
   )
 }

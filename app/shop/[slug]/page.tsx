@@ -46,7 +46,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   // Create structured data for product
-  const structuredData = {
+  const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     'name': product.title,
@@ -73,10 +73,10 @@ export default function ProductPage({ params }: ProductPageProps) {
   };
 
   return (
-    <main className="container py-10 px-4">
+    <div className="container py-10 px-4">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Button variant="ghost" size="sm" asChild className="mb-8">
         <Link href="/shop">
@@ -225,7 +225,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 
