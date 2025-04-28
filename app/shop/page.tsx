@@ -26,36 +26,35 @@ export const metadata: Metadata = {
 export const revalidate = 3600 // revalidate every hour
 
 export default function ShopPage() {
+  // Create structured data for product listing
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Trowbridge Gallery Shop",
+    "description": "Shop our curated collection of fine art, including original paintings, limited edition prints, photography, and sculptures.",
+    "url": "https://trowbridgegallery.co.uk/shop",
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "GBP",
+      "lowPrice": "245",
+      "highPrice": "890",
+      "offerCount": "12"
+    }
+  };
+
   return (
-    <>
+    <div className="container py-10 px-4">
       {/* Add structured data for product listing */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Trowbridge Gallery Shop",
-            "description": "Shop our curated collection of fine art, including original paintings, limited edition prints, photography, and sculptures.",
-            "url": "https://trowbridgegallery.co.uk/shop",
-            "offers": {
-              "@type": "AggregateOffer",
-              "priceCurrency": "GBP",
-              "lowPrice": "245",
-              "highPrice": "890",
-              "offerCount": "12"
-            }
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="container py-10 px-4">
-        <div className="mb-8">
-          <ProductFilters />
-        </div>
-        <Suspense fallback={<ProductLoadingSkeleton />}>
-          <ProductGrid />
-        </Suspense>
+      <div className="mb-8">
+        <ProductFilters />
       </div>
-    </>
+      <Suspense fallback={<ProductLoadingSkeleton />}>
+        <ProductGrid />
+      </Suspense>
+    </div>
   )
 }

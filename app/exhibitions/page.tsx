@@ -113,51 +113,49 @@ export default function ExhibitionsPage() {
     return `${startDate.toLocaleDateString('en-GB', options)} - ${endDate.toLocaleDateString('en-GB', options)}`
   }
 
+  // Create structured data for exhibitions
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Trowbridge Gallery Exhibitions",
+    "description": "Current and upcoming art exhibitions at Trowbridge Gallery London",
+    "url": "https://trowbridgegallery.co.uk/exhibitions",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": currentExhibitions.map((exhibition, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "ExhibitionEvent",
+          "name": exhibition.title,
+          "description": exhibition.description,
+          "startDate": exhibition.startDate.toISOString(),
+          "endDate": exhibition.endDate.toISOString(),
+          "location": {
+            "@type": "Place",
+            "name": "Trowbridge Gallery",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "555 Kings Road",
+              "addressLocality": "London",
+              "postalCode": "SW6 2EB",
+              "addressCountry": "GB"
+            }
+          },
+          "image": exhibition.coverImage,
+          "url": `https://trowbridgegallery.co.uk/exhibitions/${exhibition.id}`
+        }
+      }))
+    }
+  };
+
   return (
-    <>
+    <div className="container py-12 px-4">
       {/* Add structured data for exhibitions */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Trowbridge Gallery Exhibitions",
-            "description": "Current and upcoming art exhibitions at Trowbridge Gallery London",
-            "url": "https://trowbridgegallery.co.uk/exhibitions",
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": [
-                ...currentExhibitions.map((exhibition, index) => ({
-                  "@type": "ListItem",
-                  "position": index + 1,
-                  "item": {
-                    "@type": "ExhibitionEvent",
-                    "name": exhibition.title,
-                    "description": exhibition.description,
-                    "startDate": exhibition.startDate.toISOString(),
-                    "endDate": exhibition.endDate.toISOString(),
-                    "location": {
-                      "@type": "Place",
-                      "name": "Trowbridge Gallery",
-                      "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "555 Kings Road",
-                        "addressLocality": "London",
-                        "postalCode": "SW6 2EB",
-                        "addressCountry": "GB"
-                      }
-                    },
-                    "image": exhibition.coverImage,
-                    "url": `https://trowbridgegallery.co.uk/exhibitions/${exhibition.id}`
-                  }
-                }))
-              ]
-            }
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="container py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold tracking-tight mb-4">Exhibitions</h1>

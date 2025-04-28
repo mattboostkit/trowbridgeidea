@@ -19,14 +19,14 @@ interface ProductPageProps {
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   // This would typically fetch data from an API
   const product = getProductData(params.slug);
-  
+
   if (!product) {
     return {
       title: 'Product Not Found | Trowbridge Gallery',
       description: 'The requested product could not be found.',
     };
   }
-  
+
   return {
     title: `${product.title} by ${product.artist} | Trowbridge Gallery`,
     description: `${product.title} - ${product.description}. Original artwork by ${product.artist}, available at Trowbridge Gallery. ${product.category} - ${formatPrice(product.price)}.`,
@@ -40,55 +40,55 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default function ProductPage({ params }: ProductPageProps) {
   const product = getProductData(params.slug);
-  
+
   if (!product) {
     notFound();
   }
-  
+
+  // Create structured data for product
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    'name': product.title,
+    'image': product.image,
+    'description': product.description,
+    'brand': {
+      '@type': 'Brand',
+      'name': 'Trowbridge Gallery',
+    },
+    'offers': {
+      '@type': 'Offer',
+      'priceCurrency': 'GBP',
+      'price': product.price,
+      'availability': 'https://schema.org/InStock',
+      'seller': {
+        '@type': 'Organization',
+        'name': 'Trowbridge Gallery',
+      },
+    },
+    'creator': {
+      '@type': 'Person',
+      'name': product.artist,
+    },
+  };
+
   return (
-    <>
+    <div className="container py-10 px-4">
       {/* Add structured data for product */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            'name': product.title,
-            'image': product.image,
-            'description': product.description,
-            'brand': {
-              '@type': 'Brand',
-              'name': 'Trowbridge Gallery',
-            },
-            'offers': {
-              '@type': 'Offer',
-              'priceCurrency': 'GBP',
-              'price': product.price,
-              'availability': 'https://schema.org/InStock',
-              'seller': {
-                '@type': 'Organization',
-                'name': 'Trowbridge Gallery',
-              },
-            },
-            'creator': {
-              '@type': 'Person',
-              'name': product.artist,
-            },
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="container py-10 px-4">
-        <Button variant="ghost" size="sm" asChild className="mb-8">
-          <Link href="/shop">
-            <ChevronLeft className="mr-2 h-4 w-4" />
-            Back to Shop
-          </Link>
-        </Button>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <div className="aspect-square overflow-hidden rounded-lg bg-muted">
+      <Button variant="ghost" size="sm" asChild className="mb-8">
+        <Link href="/shop">
+          <ChevronLeft className="mr-2 h-4 w-4" />
+          Back to Shop
+        </Link>
+      </Button>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="space-y-6">
+          <div className="aspect-square overflow-hidden rounded-lg bg-muted">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -99,7 +99,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            
+
             <div className="grid grid-cols-4 gap-2">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="aspect-square overflow-hidden rounded-md bg-muted">
@@ -115,23 +115,23 @@ export default function ProductPage({ params }: ProductPageProps) {
               ))}
             </div>
           </div>
-          
+
           <div>
             <div className="mb-6">
               <h1 className="text-3xl font-bold tracking-tight">{product.title}</h1>
               <p className="text-lg text-muted-foreground mt-1">{product.artist}</p>
             </div>
-            
+
             <div className="mb-6">
               <h2 className="text-2xl font-semibold">{formatPrice(product.price)}</h2>
               <p className="text-sm text-muted-foreground mt-1">
                 Price includes VAT. Shipping calculated at checkout.
               </p>
             </div>
-            
+
             <div className="space-y-4 mb-8">
               <p className="text-muted-foreground">{product.description}</p>
-              
+
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium">Category:</span>
                 <Link
@@ -141,7 +141,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                   {product.category}
                 </Link>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium">Artist:</span>
                 <Link
@@ -151,14 +151,14 @@ export default function ProductPage({ params }: ProductPageProps) {
                   {product.artist}
                 </Link>
               </div>
-              
+
               {product.dimensions && (
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">Dimensions:</span>
                   <span className="text-sm text-muted-foreground">{product.dimensions}</span>
                 </div>
               )}
-              
+
               {product.medium && (
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">Medium:</span>
@@ -166,10 +166,10 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </div>
               )}
             </div>
-            
+
             <div className="space-y-4 mb-8">
               <Button size="lg" className="w-full">Add to Cart</Button>
-              
+
               <div className="flex gap-4">
                 <Button variant="outline" size="lg" className="flex-1">
                   Add to Wishlist
@@ -180,9 +180,9 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </Button>
               </div>
             </div>
-            
+
             <Separator className="my-8" />
-            
+
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Shipping & Returns</h3>
               <p className="text-sm text-muted-foreground">
@@ -196,9 +196,9 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </div>
-        
+
         <Separator className="my-16" />
-        
+
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-8">You May Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -226,7 +226,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -286,7 +286,7 @@ function getProductData(slug: string) {
       medium: 'Fine art photography print on cotton rag paper',
     },
   };
-  
+
   return products[slug as keyof typeof products];
 }
 
@@ -326,7 +326,7 @@ function getRelatedProducts(currentSlug: string) {
       slug: 'mountain-vista',
     },
   ];
-  
+
   // Filter out the current product and return up to 4 related products
   return allProducts.filter(product => product.slug !== currentSlug).slice(0, 4);
 }
