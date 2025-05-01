@@ -1,32 +1,15 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Suspense } from "react"
 import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { formatDate } from "@/lib/utils"
-import { GalleryLoadingSkeleton } from "@/components/ui/loading-skeleton"
 
 export const metadata: Metadata = {
   title: "Art Exhibitions | Current & Upcoming Shows | Trowbridge Gallery London",
   description: "Explore current and upcoming art exhibitions at Trowbridge Gallery London. From contemporary photography and textile art to urban abstractions and emerging artist showcases. Visit our Kings Road gallery or experience our virtual exhibition tours online.",
   keywords: "art exhibitions London, contemporary art shows, gallery exhibitions, textile art exhibition, photography exhibition, virtual art tours, emerging artists showcase, London art events, Kings Road gallery",
-  openGraph: {
-    title: "Art Exhibitions | Trowbridge Gallery London",
-    description: "Explore current and upcoming art exhibitions at Trowbridge Gallery London. Experience our virtual exhibition tours online.",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3",
-        width: 1200,
-        height: 630,
-        alt: "Trowbridge Gallery Exhibitions",
-      },
-    ],
-  },
 }
-
-// Add revalidation for ISR
-export const revalidate = 3600 // revalidate every hour
 
 export default function ExhibitionsPage() {
   const currentDate = new Date()
@@ -113,75 +96,32 @@ export default function ExhibitionsPage() {
     return `${startDate.toLocaleDateString('en-GB', options)} - ${endDate.toLocaleDateString('en-GB', options)}`
   }
 
-  // Create structured data for exhibitions
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Trowbridge Gallery Exhibitions",
-    "description": "Current and upcoming art exhibitions at Trowbridge Gallery London",
-    "url": "https://trowbridgegallery.co.uk/exhibitions",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": currentExhibitions.map((exhibition, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "item": {
-          "@type": "ExhibitionEvent",
-          "name": exhibition.title,
-          "description": exhibition.description,
-          "startDate": exhibition.startDate.toISOString(),
-          "endDate": exhibition.endDate.toISOString(),
-          "location": {
-            "@type": "Place",
-            "name": "Trowbridge Gallery",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "555 Kings Road",
-              "addressLocality": "London",
-              "postalCode": "SW6 2EB",
-              "addressCountry": "GB"
-            }
-          },
-          "image": exhibition.coverImage,
-          "url": `https://trowbridgegallery.co.uk/exhibitions/${exhibition.id}`
-        }
-      }))
-    }
-  };
-
   return (
     <div className="container py-12 px-4">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold tracking-tight mb-4">Exhibitions</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore our current and upcoming exhibitions featuring exceptional contemporary art
-            </p>
-          </div>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold tracking-tight mb-4">Exhibitions</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Explore our current and upcoming exhibitions featuring exceptional contemporary art
+          </p>
+        </div>
 
         {currentExhibitions.length > 0 && (
           <section className="mb-16">
             <h2 className="text-2xl font-semibold mb-8">Current Exhibitions</h2>
-            <Suspense fallback={<GalleryLoadingSkeleton />}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {currentExhibitions.map((exhibition) => (
-                  <div key={exhibition.id} className="flex flex-col">
-                    <div className="aspect-[16/9] overflow-hidden rounded-lg mb-4">
-                      <Image
-                        src={exhibition.coverImage}
-                        alt={exhibition.title}
-                        width={800}
-                        height={450}
-                        className="object-cover w-full h-full"
-                        quality={85}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        priority={exhibition.featured}
-                      />
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {currentExhibitions.map((exhibition) => (
+                <div key={exhibition.id} className="flex flex-col">
+                  <div className="aspect-[16/9] overflow-hidden rounded-lg mb-4">
+                    <Image
+                      src={exhibition.coverImage}
+                      alt={exhibition.title}
+                      width={800}
+                      height={450}
+                      className="object-cover w-full h-full"
+                      unoptimized
+                    />
+                  </div>
                   <div className="flex-1 flex flex-col">
                     <h3 className="text-xl font-medium mb-2">{exhibition.title}</h3>
                     <div className="flex items-center text-muted-foreground mb-2">
@@ -211,28 +151,25 @@ export default function ExhibitionsPage() {
                 </div>
               ))}
             </div>
-            </Suspense>
           </section>
         )}
 
         {upcomingExhibitions.length > 0 && (
           <section className="mb-16">
             <h2 className="text-2xl font-semibold mb-8">Upcoming Exhibitions</h2>
-            <Suspense fallback={<GalleryLoadingSkeleton />}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {upcomingExhibitions.map((exhibition) => (
-                  <div key={exhibition.id} className="border rounded-lg overflow-hidden group">
-                    <div className="aspect-[3/2] overflow-hidden">
-                      <Image
-                        src={exhibition.coverImage}
-                        alt={exhibition.title}
-                        width={600}
-                        height={400}
-                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                        quality={80}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {upcomingExhibitions.map((exhibition) => (
+                <div key={exhibition.id} className="border rounded-lg overflow-hidden group">
+                  <div className="aspect-[3/2] overflow-hidden">
+                    <Image
+                      src={exhibition.coverImage}
+                      alt={exhibition.title}
+                      width={600}
+                      height={400}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      unoptimized
+                    />
+                  </div>
                   <div className="p-5">
                     <h3 className="font-medium mb-2">{exhibition.title}</h3>
                     <div className="flex items-center text-muted-foreground mb-2">
@@ -253,7 +190,6 @@ export default function ExhibitionsPage() {
                 </div>
               ))}
             </div>
-            </Suspense>
           </section>
         )}
 
