@@ -1,5 +1,6 @@
 import { ProductFilters } from "@/components/shop/product-filters"
 import { Metadata } from "next"
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: "Shop Fine Art | Original Paintings & Limited Edition Prints | Trowbridge Gallery",
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <div className="container py-10 px-4">
-      <ProductFilters />
+      <Suspense fallback={<div>Loading filters...</div>}>
+        <ProductFilters />
+      </Suspense>
     </div>
   )
 }
