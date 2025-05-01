@@ -44,7 +44,7 @@ export default function ExhibitionsPage() {
       startDate: new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 20),
       endDate: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1),
       location: "West Gallery",
-      coverImage: "https://media.licdn.com/dms/image/v2/D5610AQFOFXlmTwuU8Q/image-shrink_1280/B56ZY.sNVlHoAU-/0/1744808499760?e=1745438400&v=beta&t=1iKWOWpRh-bBFlrHmpA3ak_jeUSxKkn6deAQJJeQ8xw",
+      coverImage: "https://ik.imagekit.io/boostkit/Trowbridge/1030_explainer_light_energy.jpg?updatedAt=1746106585039",
       featured: false,
       virtualTourUrl: "/exhibitions/virtual-tour/3",
     },
