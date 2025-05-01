@@ -36,7 +36,7 @@ const FormSubmitButton = ({
 // Type for the form props
 interface ServerActionFormProps<TState extends Record<string, any>> {
   action: (prevState: TState, formData: FormData) => Promise<TState>;
-  initialState: TState;
+  initialState: Awaited<TState>;
   children: React.ReactNode | ((state: TState) => React.ReactNode);
   onSuccess?: (state: TState) => void;
   className?: string;
